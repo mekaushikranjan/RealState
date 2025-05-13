@@ -2,6 +2,8 @@ import Image from "next/image"
 import { notFound } from "next/navigation"
 import { BlogAuthor } from "@/components/blog-author"
 import { Calendar, Clock, User } from "lucide-react"
+import { BlogContent } from '@/components/blog-content'
+import { BlogRelated } from '@/components/blog-related'
 
 // Mock data - in a real app this would come from an API
 const blogPosts = [
@@ -74,7 +76,13 @@ function getBlogPostBySlug(slug: string) {
   return blogPosts.find((post) => post.slug === slug)
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+interface BlogPageProps {
+  params: {
+    slug: string
+  }
+}
+
+export default function BlogPage({ params }: BlogPageProps) {
   const post = getBlogPostBySlug(params.slug)
 
   if (!post) {
@@ -82,9 +90,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12 pt-32">
-      <article className="max-w-4xl mx-auto">
-        <div className="relative w-full h-[400px] rounded-xl overflow-hidden mb-8">
+    <main className="w-full overflow-x-hidden">
+      {/* Hero Section */}
+      <div className="relative w-full">
+        <div className="relative w-full h-96 md:h-[600px] flex items-center justify-center">
           <Image
             src={post.image}
             alt={post.title}
@@ -92,32 +101,33 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             className="object-cover"
             priority
           />
+          <div className="absolute inset-0 bg-black/40" />
         </div>
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-              <User className="h-4 w-4 mr-1" />
-              {post.author.name}
-            </div>
-            <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-              <Calendar className="h-4 w-4 mr-1" />
-              {post.date}
-            </div>
-            <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-              <Clock className="h-4 w-4 mr-1" />
-              {post.readTime}
+        <div className="absolute inset-0 flex items-center justify-center z-10">
+          <div className="text-center text-white px-4">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">{post.title}</h1>
+            <div className="flex items-center justify-center gap-4 text-sm">
+              <span>{post.date}</span>
+              <span>•</span>
+              <span>{post.category}</span>
             </div>
           </div>
         </div>
-        <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">{post.excerpt}</p>
-        <div className="prose dark:prose-invert max-w-none mb-12">
-          {post.content}
+      </div>
+
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+          <div className="lg:col-span-3">
+            <BlogContent content={post.content} />
+          </div>
+          <div className="lg:col-span-1">
+            <div className="sticky top-24 space-y-8">
+              <BlogAuthor author={post.author} />
+              <BlogRelated currentPostSlug={params.slug} />
+            </div>
+          </div>
         </div>
-        <div className="border-t pt-8">
-          <BlogAuthor author={post.author} />
-        </div>
-      </article>
-    </div>
+      </div>
+    </main>
   )
 }

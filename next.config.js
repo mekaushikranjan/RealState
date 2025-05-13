@@ -5,7 +5,9 @@ const nextConfig = {
     unoptimized: true,  // Required for static export
     domains: ['images.unsplash.com'],
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/realstate' : '',  // Add your repository name here
+  basePath: '/realstate',
+  assetPrefix: '/realstate/',
+  trailingSlash: true,
 }
 
 module.exports = nextConfig 
