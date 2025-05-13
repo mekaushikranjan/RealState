@@ -5,7 +5,7 @@ import { Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin } from "luc
 export default function Footer() {
   return (
     <footer className="bg-black text-white border-t border-gray-800">
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div>
             <div className="text-2xl font-bold text-white mb-6">LUXURY DUBAI</div>
@@ -14,16 +14,16 @@ export default function Footer() {
               dream property.
             </p>
             <div className="flex space-x-4">
-              <Button variant="ghost" size="icon" className="hover:bg-white/10 text-white" aria-label="Facebook">
+              <Button variant="ghost" size="icon" className="text-white backdrop-blur-sm rounded-lg hover:bg-white/10" aria-label="Facebook">
                 <Facebook className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:bg-white/10 text-white" aria-label="Instagram">
+              <Button variant="ghost" size="icon" className="text-white backdrop-blur-sm rounded-lg hover:bg-white/10" aria-label="Instagram">
                 <Instagram className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:bg-white/10 text-white" aria-label="Twitter">
+              <Button variant="ghost" size="icon" className="text-white backdrop-blur-sm rounded-lg hover:bg-white/10" aria-label="Twitter">
                 <Twitter className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:bg-white/10 text-white" aria-label="LinkedIn">
+              <Button variant="ghost" size="icon" className="text-white backdrop-blur-sm rounded-lg hover:bg-white/10" aria-label="LinkedIn">
                 <Linkedin className="h-5 w-5" />
               </Button>
             </div>

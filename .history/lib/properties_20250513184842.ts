@@ -9,7 +9,7 @@ export interface Property {
   type: string
   category: string
   image: string
-  images: string[]
+  images: string[]  // Array of all property images
   featured: boolean
   features: string[]
   amenities: string[]
@@ -18,17 +18,10 @@ export interface Property {
   description: string
   locationDetails: {
     address: string
+    latitude: number
+    longitude: number
     neighborhood: string
     city: string
-    coordinates: {
-      lat: number
-      lng: number
-    }
-    nearbyPlaces: {
-      name: string
-      distance: string
-      type: string
-    }[]
   }
   agent: {
     id: string
@@ -69,18 +62,10 @@ const properties: Property[] = [
       "This stunning penthouse offers breathtaking views of the Arabian Gulf and the Dubai skyline. Featuring high-end finishes, spacious living areas, and a private terrace, this property represents the pinnacle of luxury living in Palm Jumeirah.\n\nThe open-concept living and dining area is perfect for entertaining, while the gourmet kitchen comes equipped with top-of-the-line appliances. The master suite includes a spa-like bathroom and a walk-in closet. Additional features include floor-to-ceiling windows, smart home technology, and exclusive access to building amenities.",
     locationDetails: {
       address: "Palm Jumeirah, Dubai, UAE",
+      latitude: 25.1124,
+      longitude: 55.139,
       neighborhood: "Palm Jumeirah",
       city: "Dubai",
-      coordinates: {
-        lat: 25.1124,
-        lng: 55.139,
-      },
-      nearbyPlaces: [
-        { name: "Atlantis, The Palm", distance: "1.2 km", type: "Landmark" },
-        { name: "Nakheel Mall", distance: "0.8 km", type: "Shopping" },
-        { name: "Dubai Marina", distance: "5.3 km", type: "Neighborhood" },
-        { name: "Dubai International Airport", distance: "32 km", type: "Airport" },
-      ],
     },
     agent: {
       id: "1",
@@ -119,18 +104,10 @@ const properties: Property[] = [
       "This modern villa offers a luxurious living experience with a private pool and stunning views. The spacious layout and high-end finishes make it perfect for families.",
     locationDetails: {
       address: "Emirates Hills, Dubai, UAE",
+      latitude: 25.0759,
+      longitude: 55.1773,
       neighborhood: "Emirates Hills",
       city: "Dubai",
-      coordinates: {
-        lat: 25.0759,
-        lng: 55.1773,
-      },
-      nearbyPlaces: [
-        { name: "Emirates Golf Club", distance: "1.5 km", type: "Golf Club" },
-        { name: "Dubai Marina Mall", distance: "6.2 km", type: "Shopping" },
-        { name: "Jumeirah Beach Residence", distance: "7.8 km", type: "Beach" },
-        { name: "Dubai International Airport", distance: "30 km", type: "Airport" },
-      ],
     },
     agent: {
       id: "2",
@@ -147,9 +124,9 @@ const properties: Property[] = [
 ]
 
 export function getAllProperties(): Property[] {
-  return properties as Property[]
+  return properties
 }
 
 export function getPropertyById(id: string): Property | undefined {
-  return properties.find(property => property.id === id) as Property | undefined
+  return properties.find(property => property.id === id)
 }

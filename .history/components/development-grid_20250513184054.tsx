@@ -11,15 +11,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Building, MapPin, Calendar, ExternalLink } from "lucide-react"
 
 interface Development {
-  id: string
-  title: string
-  developer: string
-  location: string
-  completionDate: string
-  status: "under-construction" | "off-plan"
-  description: string
-  image: string
-  priceRange: string
+  id: string;
+  title: string;
+  developer: string;
+  location: string;
+  completionDate: string;
+  status: "under-construction" | "off-plan";
+  description: string;
+  image: string;
+  priceRange: string;
 }
 
 // Mock data - in a real app this would come from an API
@@ -99,7 +99,7 @@ const developments: Development[] = [
 ]
 
 export function DevelopmentGrid() {
-  const [activeTab, setActiveTab] = useState<string>("all")
+  const [activeTab, setActiveTab] = useState("all")
 
   const filteredDevelopments =
     activeTab === "all" ? developments : developments.filter((development) => development.status === activeTab)

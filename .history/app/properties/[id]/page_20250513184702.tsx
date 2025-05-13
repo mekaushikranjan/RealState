@@ -9,21 +9,20 @@ import { getPropertyById, getAllProperties, type Property } from "@/lib/properti
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   const properties = getAllProperties()
   return properties.map((property: Property) => ({
     id: property.id,
   }))
 }
 
-type PageProps = {
+interface PropertyPageProps {
   params: {
     id: string
   }
-  searchParams?: { [key: string]: string | string[] | undefined }
 }
 
-export default function PropertyPage({ params, searchParams }: PageProps) {
+export default function PropertyPage({ params }: PropertyPageProps) {
   const property = getPropertyById(params.id)
 
   if (!property) {

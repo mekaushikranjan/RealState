@@ -5,85 +5,49 @@ import { Calendar, Clock, User } from "lucide-react"
 import { BlogContent } from '@/components/blog-content'
 import { BlogRelated } from '@/components/blog-related'
 
-// Mock data - in a real app this would come from an API
-const blogPosts = [
-  {
-    id: "1",
-    title: "Dubai Real Estate Market Trends for 2023",
-    excerpt: "Explore the latest trends and forecasts for Dubai's dynamic real estate market in 2023.",
-    content: "Full content of the blog post...",
-    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-    date: "May 15, 2023",
-    readTime: "5 min read",
-    category: "Market Trends",
+// Generate static params for the blog posts
+export async function generateStaticParams() {
+  return [
+    { slug: 'future-of-real-estate-in-dubai' },
+    { slug: 'dubai-real-estate-market-trends-2023' },
+    { slug: 'top-luxury-areas-dubai-property-investment' }
+  ]
+}
+
+export default function BlogPage(props: any) {
+  const { params } = props;
+  // In a real app, you would fetch the blog post data here
+  const post = {
+    title: "The Future of Real Estate in Dubai",
+    content: `Dubai's real estate market continues to evolve and innovate, setting new standards for luxury living and investment opportunities. The city's strategic location, world-class infrastructure, and forward-thinking policies make it a prime destination for real estate investment.
+
+## Market Trends
+
+The Dubai real estate market has shown remarkable resilience and growth, with several key trends emerging:
+
+1. Sustainable Development
+2. Smart Home Integration
+3. Luxury Living Spaces
+4. Investment Opportunities
+
+## Future Outlook
+
+The future of Dubai's real estate market looks promising, with several major developments in the pipeline and a growing demand for high-quality properties.`,
     author: {
       name: "Sarah Johnson",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop",
+      role: "Real Estate Analyst",
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&q=80",
       bio: "Sarah is a real estate expert with over 10 years of experience in Dubai's property market.",
       socialMedia: {
         twitter: "#",
         facebook: "#",
-        linkedin: "#",
-      },
+        linkedin: "#"
+      }
     },
-    slug: "dubai-real-estate-market-trends-2023",
-  },
-  {
-    id: "2",
-    title: "Top 5 Luxury Areas in Dubai for Property Investment",
-    excerpt: "Discover the most exclusive neighborhoods in Dubai that offer the best return on investment.",
-    content: "Full content of the blog post...",
-    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-    date: "April 28, 2023",
-    readTime: "7 min read",
-    category: "Investment",
-    author: {
-      name: "Mohammed Al Farsi",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop",
-      bio: "Mohammed specializes in luxury property investments in Dubai.",
-      socialMedia: {
-        twitter: "#",
-        facebook: "#",
-        linkedin: "#",
-      },
-    },
-    slug: "top-luxury-areas-dubai-property-investment",
-  },
-  {
-    id: "3",
-    title: "Guide to Buying Off-Plan Properties in Dubai",
-    excerpt: "Everything you need to know about purchasing off-plan properties in Dubai's competitive market.",
-    content: "Full content of the blog post...",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-    date: "April 10, 2023",
-    readTime: "6 min read",
-    category: "Buying Guide",
-    author: {
-      name: "Elena Petrova",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&h=200&auto=format&fit=crop",
-      bio: "Elena is an expert in Dubai's off-plan property market.",
-      socialMedia: {
-        twitter: "#",
-        facebook: "#",
-        linkedin: "#",
-      },
-    },
-    slug: "guide-buying-off-plan-properties-dubai",
-  },
-]
-
-function getBlogPostBySlug(slug: string) {
-  return blogPosts.find((post) => post.slug === slug)
-}
-
-interface BlogPageProps {
-  params: {
-    slug: string
+    date: "March 15, 2024",
+    category: "Market Analysis",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
   }
-}
-
-export default function BlogPage({ params }: BlogPageProps) {
-  const post = getBlogPostBySlug(params.slug)
 
   if (!post) {
     notFound()

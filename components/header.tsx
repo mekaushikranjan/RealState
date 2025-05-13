@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, Phone, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
-import { useLanguage } from "@/hooks/use-language"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { GB, AE, RU, CN } from 'country-flag-icons/react/3x2'
@@ -35,7 +34,6 @@ export default function Header() {
   const pathname = usePathname()
   const router = useRouter()
   const { theme, setTheme } = useTheme()
-  const { t } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -98,7 +96,7 @@ export default function Header() {
                       : "text-white hover:bg-white/20"
                 )}
               >
-                {t(item.name.toLowerCase())}
+                {(item.name)}
               </Link>
             ))}
           </nav>
@@ -155,7 +153,7 @@ export default function Header() {
               )}
             >
               <Phone className="h-4 w-4" />
-              {t("contact")}
+              {("contact")}
             </Button>
           </div>
 
@@ -194,7 +192,7 @@ export default function Header() {
                             : "text-black dark:text-white hover:bg-black/10 dark:hover:bg-white/10"
                         )}
                       >
-                        {t(item.name.toLowerCase())}
+                        {(item.name)}
                       </button>
                     ))}
                   </nav>
@@ -231,7 +229,7 @@ export default function Header() {
                       className="w-full gap-2 bg-black hover:bg-black/90 text-white dark:bg-white dark:hover:bg-white/90 dark:text-black rounded-full font-semibold transition-colors duration-200"
                     >
                       <Phone className="h-4 w-4" />
-                      {t("contact")}
+                      {("contact")}
                     </Button>
                   </div>
                 </div>

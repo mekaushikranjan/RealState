@@ -76,10 +76,16 @@ const properties: Property[] = [
         lng: 55.139,
       },
       nearbyPlaces: [
-        { name: "Atlantis, The Palm", distance: "1.2 km", type: "Landmark" },
-        { name: "Nakheel Mall", distance: "0.8 km", type: "Shopping" },
-        { name: "Dubai Marina", distance: "5.3 km", type: "Neighborhood" },
-        { name: "Dubai International Airport", distance: "32 km", type: "Airport" },
+        {
+          name: "Atlantis The Palm",
+          distance: "2 km",
+          type: "hotel",
+        },
+        {
+          name: "Nakheel Mall",
+          distance: "1 km",
+          type: "shopping",
+        },
       ],
     },
     agent: {
@@ -126,10 +132,16 @@ const properties: Property[] = [
         lng: 55.1773,
       },
       nearbyPlaces: [
-        { name: "Emirates Golf Club", distance: "1.5 km", type: "Golf Club" },
-        { name: "Dubai Marina Mall", distance: "6.2 km", type: "Shopping" },
-        { name: "Jumeirah Beach Residence", distance: "7.8 km", type: "Beach" },
-        { name: "Dubai International Airport", distance: "30 km", type: "Airport" },
+        {
+          name: "Montgomerie Golf Club",
+          distance: "1 km",
+          type: "golf",
+        },
+        {
+          name: "Dubai Marina Mall",
+          distance: "5 km",
+          type: "shopping",
+        },
       ],
     },
     agent: {

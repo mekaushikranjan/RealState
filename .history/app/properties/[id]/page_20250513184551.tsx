@@ -5,25 +5,20 @@ import { PropertyLocation } from "@/components/property-location"
 import { PropertyAgent } from "@/components/property-agent"
 import { SimilarProperties } from "@/components/similar-properties"
 import { PropertyContactForm } from "@/components/property-contact-form"
-import { getPropertyById, getAllProperties, type Property } from "@/lib/properties"
+import { getPropertyById, getAllProperties } from "@/lib/properties"
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   const properties = getAllProperties()
-  return properties.map((property: Property) => ({
+  return properties.map((property) => ({
     id: property.id,
   }))
 }
 
-type PageProps = {
-  params: {
-    id: string
-  }
-  searchParams?: { [key: string]: string | string[] | undefined }
-}
-
-export default function PropertyPage({ params, searchParams }: PageProps) {
+export default function PropertyPage(props: any) {
+  const { params } = props;
+  // In a real application, this would fetch from an API
   const property = getPropertyById(params.id)
 
   if (!property) {
